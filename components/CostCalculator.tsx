@@ -38,7 +38,7 @@ export const CostCalculator: React.FC = () => {
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden">
+    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-700 overflow-hidden transition-colors">
       <div className="bg-slate-900 p-6 text-white flex items-center gap-3">
         <Calculator className="text-blue-400" />
         <h3 className="text-xl font-bold">Калькулятор стоимости</h3>
@@ -50,7 +50,7 @@ export const CostCalculator: React.FC = () => {
           
           {/* Building Type */}
           <div className="space-y-3">
-            <label className="block text-sm font-medium text-slate-700">Тип строения</label>
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">Тип строения</label>
             <div className="grid grid-cols-3 gap-2">
               {[
                 { id: 'residential', label: 'Жилой дом' },
@@ -62,8 +62,8 @@ export const CostCalculator: React.FC = () => {
                   onClick={() => setType(item.id as BuildingType)}
                   className={`py-2 px-1 text-sm rounded-lg border transition-all ${
                     type === item.id 
-                      ? 'bg-slate-900 text-white border-slate-900' 
-                      : 'bg-white text-slate-600 border-slate-200 hover:border-slate-400'
+                      ? 'bg-slate-900 text-white border-slate-900 dark:bg-blue-600 dark:border-blue-600' 
+                      : 'bg-white text-slate-600 border-slate-200 hover:border-slate-400 dark:bg-slate-700 dark:text-slate-300 dark:border-slate-600 dark:hover:border-slate-500'
                   }`}
                 >
                   {item.label}
@@ -75,8 +75,8 @@ export const CostCalculator: React.FC = () => {
           {/* Area Slider */}
           <div className="space-y-3">
             <div className="flex justify-between">
-              <label className="block text-sm font-medium text-slate-700">Площадь (м²)</label>
-              <span className="font-bold text-blue-700 bg-blue-50 px-2 rounded">{area}</span>
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">Площадь (м²)</label>
+              <span className="font-bold text-blue-700 bg-blue-50 dark:bg-blue-900/50 dark:text-blue-300 px-2 rounded">{area}</span>
             </div>
             <input 
               type="range" 
@@ -85,9 +85,9 @@ export const CostCalculator: React.FC = () => {
               step="10" 
               value={area} 
               onChange={(e) => setArea(Number(e.target.value))}
-              className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+              className="w-full h-2 bg-slate-200 dark:bg-slate-600 rounded-lg appearance-none cursor-pointer accent-blue-600"
             />
-            <div className="flex justify-between text-xs text-slate-400">
+            <div className="flex justify-between text-xs text-slate-400 dark:text-slate-500">
               <span>50 м²</span>
               <span>2000 м²</span>
             </div>
@@ -95,11 +95,11 @@ export const CostCalculator: React.FC = () => {
 
           {/* Material */}
           <div className="space-y-3">
-            <label className="block text-sm font-medium text-slate-700">Материалы</label>
+            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300">Материалы</label>
             <select 
               value={material} 
               onChange={(e) => setMaterial(e.target.value as MaterialType)}
-              className="w-full p-3 bg-slate-50 border border-slate-200 rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg outline-none focus:ring-2 focus:ring-blue-500 text-slate-900 dark:text-white"
             >
               <option value="frame">Каркасная технология (Эконом)</option>
               <option value="brick">Кирпич / Газобетон (Стандарт)</option>
@@ -110,13 +110,13 @@ export const CostCalculator: React.FC = () => {
         </div>
 
         {/* Result */}
-        <div className="bg-slate-50 rounded-xl p-6 flex flex-col justify-between border border-slate-100">
+        <div className="bg-slate-50 dark:bg-slate-700 rounded-xl p-6 flex flex-col justify-between border border-slate-100 dark:border-slate-600 transition-colors">
           <div>
-            <h4 className="text-slate-500 font-medium mb-1">Ориентировочная стоимость:</h4>
-            <div className="text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight text-blue-600 mb-2">
+            <h4 className="text-slate-500 dark:text-slate-400 font-medium mb-1">Ориентировочная стоимость:</h4>
+            <div className="text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white tracking-tight text-blue-600 dark:text-blue-400 mb-2">
               {formatCurrency(cost)}
             </div>
-            <p className="text-sm text-slate-400 flex items-start gap-2 mt-4">
+            <p className="text-sm text-slate-400 dark:text-slate-300 flex items-start gap-2 mt-4">
               <Info size={16} className="flex-shrink-0 mt-0.5" />
               Это предварительный расчет. Окончательная стоимость зависит от геологии участка, сложности проекта и текущих цен на материалы.
             </p>
