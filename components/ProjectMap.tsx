@@ -39,11 +39,11 @@ export const ProjectMap: React.FC = () => {
   const [activeMarker, setActiveMarker] = useState<number | null>(null);
 
   return (
-    <div className="w-full bg-slate-100 rounded-3xl overflow-hidden shadow-xl border border-slate-200 relative aspect-[16/9] md:aspect-[21/9]">
+    <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-3xl overflow-hidden shadow-xl border border-slate-200 dark:border-slate-700 relative aspect-[16/9] md:aspect-[21/9] transition-colors">
       {/* Abstract Map Background */}
-      <div className="absolute inset-0 bg-slate-200">
+      <div className="absolute inset-0 bg-slate-200 dark:bg-slate-800 transition-colors">
         {/* Decorative Grid and Shapes simulating a map */}
-        <div className="absolute inset-0 opacity-20" 
+        <div className="absolute inset-0 opacity-20 dark:opacity-10" 
              style={{ 
                backgroundImage: 'radial-gradient(#94a3b8 1px, transparent 1px)', 
                backgroundSize: '20px 20px' 
@@ -51,18 +51,18 @@ export const ProjectMap: React.FC = () => {
         </div>
         
         {/* River/Road abstract shape */}
-        <svg className="absolute inset-0 w-full h-full text-slate-300 pointer-events-none" preserveAspectRatio="none">
+        <svg className="absolute inset-0 w-full h-full text-slate-300 dark:text-slate-700 pointer-events-none transition-colors" preserveAspectRatio="none">
           <path d="M-10,100 C150,80 200,150 400,120 S600,50 800,100 S1200,150 1600,100" fill="none" stroke="currentColor" strokeWidth="20" />
           <path d="M0,50 C300,60 500,20 900,60 S1300,100 1500,50" fill="none" stroke="currentColor" strokeWidth="15" opacity="0.6" />
         </svg>
 
         {/* City Blocks abstract */}
-        <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-slate-300/50 rounded-lg transform rotate-12"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-48 h-24 bg-slate-300/50 rounded-lg transform -rotate-6"></div>
+        <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-slate-300/50 dark:bg-slate-700/50 rounded-lg transform rotate-12"></div>
+        <div className="absolute bottom-1/3 right-1/4 w-48 h-24 bg-slate-300/50 dark:bg-slate-700/50 rounded-lg transform -rotate-6"></div>
       </div>
 
       <div className="absolute inset-0 p-8">
-        <h3 className="text-xl font-bold text-slate-500 uppercase tracking-widest pointer-events-none select-none opacity-50">Карта Объектов</h3>
+        <h3 className="text-xl font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest pointer-events-none select-none opacity-50">Карта Объектов</h3>
       </div>
 
       {/* Markers */}
@@ -77,7 +77,7 @@ export const ProjectMap: React.FC = () => {
             className={`group relative flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full shadow-lg transition-all duration-300 ${
               activeMarker === marker.id 
                 ? 'bg-blue-600 text-white scale-110' 
-                : 'bg-white text-slate-700 hover:bg-blue-600 hover:text-white'
+                : 'bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600'
             }`}
           >
             <MapPin size={20} className={activeMarker === marker.id ? 'fill-current' : ''} />
@@ -90,32 +90,32 @@ export const ProjectMap: React.FC = () => {
 
           {/* Popup Card */}
           {activeMarker === marker.id && (
-            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-64 md:w-72 bg-white rounded-xl shadow-2xl p-4 md:p-5 z-20 animate-in fade-in zoom-in duration-200">
+            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-64 md:w-72 bg-white dark:bg-slate-900 rounded-xl shadow-2xl p-4 md:p-5 z-20 animate-in fade-in zoom-in duration-200">
               <button 
                 onClick={(e) => { e.stopPropagation(); setActiveMarker(null); }}
-                className="absolute top-2 right-2 p-1 text-slate-400 hover:text-slate-600 rounded-full hover:bg-slate-100"
+                className="absolute top-2 right-2 p-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800"
               >
                 <X size={16} />
               </button>
               
               <div className="text-xs font-bold text-blue-600 uppercase tracking-wide mb-1">{marker.project.type}</div>
-              <h4 className="font-bold text-slate-900 text-lg mb-2">{marker.project.title}</h4>
+              <h4 className="font-bold text-slate-900 dark:text-white text-lg mb-2">{marker.project.title}</h4>
               
-              <div className="flex items-center justify-between text-sm text-slate-600 mb-4">
+              <div className="flex items-center justify-between text-sm text-slate-600 dark:text-slate-400 mb-4">
                 <span>Завершен:</span>
                 <span className="font-semibold">{marker.project.year}</span>
               </div>
               
               <a 
                 href={marker.project.link}
-                className="flex items-center justify-center w-full py-2 bg-slate-50 text-slate-900 rounded-lg hover:bg-slate-100 font-medium transition-colors text-sm group"
+                className="flex items-center justify-center w-full py-2 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 font-medium transition-colors text-sm group"
                 onClick={(e) => e.preventDefault()}
               >
                 Подробнее <ArrowRight size={14} className="ml-2 group-hover:translate-x-1 transition-transform" />
               </a>
               
               {/* Triangle pointer */}
-              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white transform rotate-45"></div>
+              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white dark:bg-slate-900 transform rotate-45"></div>
             </div>
           )}
         </div>
