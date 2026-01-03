@@ -40,13 +40,13 @@ export const Testimonials: React.FC = () => {
   return (
     <div className="relative max-w-4xl mx-auto">
       {/* Decorative quotes */}
-      <Quote className="absolute top-0 left-0 text-blue-100 w-24 h-24 -translate-x-8 -translate-y-8 transform -scale-x-100 z-0 opacity-50 md:opacity-100" />
+      <Quote className="absolute top-0 left-0 text-blue-100 dark:text-blue-900/40 w-24 h-24 -translate-x-8 -translate-y-8 transform -scale-x-100 z-0 opacity-50 md:opacity-100" />
       
-      <div className="relative bg-white rounded-2xl shadow-xl p-8 md:p-12 z-10 border border-slate-100">
+      <div className="relative bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8 md:p-12 z-10 border border-slate-100 dark:border-slate-700 transition-colors">
         <div className="flex flex-col items-center text-center">
           
           {/* Avatar */}
-          <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-blue-100 mb-6 shadow-md">
+          <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-blue-100 dark:border-blue-900 mb-6 shadow-md">
             <img 
               src={TESTIMONIALS[currentIndex].avatarUrl || `https://ui-avatars.com/api/?name=${TESTIMONIALS[currentIndex].name}`} 
               alt={TESTIMONIALS[currentIndex].name} 
@@ -62,14 +62,14 @@ export const Testimonials: React.FC = () => {
           </div>
 
           {/* Text */}
-          <blockquote className="text-xl md:text-2xl text-slate-700 font-medium leading-relaxed mb-8 italic">
+          <blockquote className="text-xl md:text-2xl text-slate-700 dark:text-slate-200 font-medium leading-relaxed mb-8 italic">
             "{TESTIMONIALS[currentIndex].content}"
           </blockquote>
 
           {/* Author */}
           <div>
-            <div className="font-bold text-slate-900 text-lg">{TESTIMONIALS[currentIndex].name}</div>
-            <div className="text-slate-500 text-sm">{TESTIMONIALS[currentIndex].role}</div>
+            <div className="font-bold text-slate-900 dark:text-white text-lg">{TESTIMONIALS[currentIndex].name}</div>
+            <div className="text-slate-500 dark:text-slate-400 text-sm">{TESTIMONIALS[currentIndex].role}</div>
           </div>
         </div>
 
@@ -77,7 +77,7 @@ export const Testimonials: React.FC = () => {
         <div className="absolute top-1/2 -left-4 md:-left-12 -translate-y-1/2">
           <button 
             onClick={prev}
-            className="p-3 bg-white text-slate-900 rounded-full shadow-lg border border-slate-100 hover:bg-blue-600 hover:text-white transition-colors"
+            className="p-3 bg-white dark:bg-slate-700 text-slate-900 dark:text-white rounded-full shadow-lg border border-slate-100 dark:border-slate-600 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 transition-colors"
             aria-label="Previous testimonial"
           >
             <ChevronLeft size={24} />
@@ -86,7 +86,7 @@ export const Testimonials: React.FC = () => {
         <div className="absolute top-1/2 -right-4 md:-right-12 -translate-y-1/2">
           <button 
             onClick={next}
-            className="p-3 bg-white text-slate-900 rounded-full shadow-lg border border-slate-100 hover:bg-blue-600 hover:text-white transition-colors"
+            className="p-3 bg-white dark:bg-slate-700 text-slate-900 dark:text-white rounded-full shadow-lg border border-slate-100 dark:border-slate-600 hover:bg-blue-600 hover:text-white dark:hover:bg-blue-600 transition-colors"
             aria-label="Next testimonial"
           >
             <ChevronRight size={24} />
@@ -100,7 +100,7 @@ export const Testimonials: React.FC = () => {
               key={idx}
               onClick={() => setCurrentIndex(idx)}
               className={`w-2.5 h-2.5 rounded-full transition-all ${
-                idx === currentIndex ? 'bg-blue-600 w-6' : 'bg-slate-300'
+                idx === currentIndex ? 'bg-blue-600 w-6' : 'bg-slate-300 dark:bg-slate-600'
               }`}
             />
           ))}
